@@ -15,13 +15,14 @@
 <body>
 
     <h2>Ask OpenAI:</h2>
+    <textarea id="apikeyarea"></textarea>
     <textarea id="userInput" rows="4" cols="50" placeholder="Type your question..."></textarea>
     <br>
     <button onclick="handleRequest()">Ask</button>
     <p><strong>Response:</strong></p>
     <p id="responseText">Waiting for input...</p>
 
-      <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
+    <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
       <input type="text" id="myTextbox" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
       <button id="setValueBtn">Set Value</button>
         <script>
@@ -63,7 +64,7 @@
     <p id="demo"></p>
     <textarea id="myTextarea"></textarea>
     <button type="button" onclick="runAI()">LETS GO</button>
-    
+
     <script>
         async function handleRequest() {
             const userInput = document.getElementById("userInput").value;
@@ -74,7 +75,7 @@
         }
 
         async function getOpenAIResponse(prompt) {
-            const apiKey = "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"; // Replace with your actual API key
+            const apiKey = document.getElementById("apikeyarea").value; // Replace with your actual API key
             const apiUrl = "https://api.openai.com/v1/chat/completions";
 
             const response = await fetch(apiUrl, {
