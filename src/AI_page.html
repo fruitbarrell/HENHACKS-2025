@@ -10,9 +10,10 @@
     <button type="button" onclick="runAI()">LETS GO</button>
     <script>
         function runAI() {
+            var apikey = document.getElementById("myTextarea").value;
             require('dotenv').config() 
             const OpenAI = require('openai');
-            const openai = new OpenAI(process.env.OPENAI_API_KEY);
+            const openai = new OpenAI(apikey);
             openai.Completion.create ({
                 engine: 'text-davinci-003',
                 prompt: "Tell me about cheeseburgers",
