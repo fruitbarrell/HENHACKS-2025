@@ -13,18 +13,14 @@
     <h1 style="text-align: center;">Robot Nurse</h1>
 </header>
 <body>
-
-    <h2>Ask OpenAI:</h2>
-    <textarea id="apikeyarea"></textarea>
-    <textarea id="userInput" rows="4" cols="50" placeholder="Type your question..."></textarea>
     <br>
-    <button onclick="handleRequest()">Ask</button>
+    
     <p><strong>Response:</strong></p>
     <p id="responseText">Waiting for input...</p>
 
-    <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
+    <div id="userInput" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
       <input type="text" id="myTextbox" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
-      <button id="setValueBtn">Set Value</button>
+      <button id="setValueBtn" onclick="handleRequest()">Ask</button>
         <script>
             // List of items
             const items = [""];
@@ -61,10 +57,7 @@
             });
         </script>
 
-    <p id="demo"></p>
-    <textarea id="myTextarea"></textarea>
-    <button type="button" onclick="runAI()">LETS GO</button>
-
+   
     <script>
         async function handleRequest() {
             const userInput = document.getElementById("userInput").value;
@@ -76,6 +69,7 @@
 
         async function getOpenAIResponse(prompt) {
             const apiKey = document.getElementById("apikeyarea").value; // Replace with your actual API key
+            console.log(apiKey)
             const apiUrl = "https://api.openai.com/v1/chat/completions";
 
             const response = await fetch(apiUrl, {
@@ -97,4 +91,5 @@
     </script>
 
 </body>
+<footer><textarea id="apikeyarea" placeholder="Please input your API KEY "></textarea></footer>
 </html>
