@@ -10,10 +10,9 @@
     <button type="button" onclick="runAI()">LETS GO</button>
     <script>
         function runAI() {
-            var x = document.getElementById("myTextarea").value;
             require('dotenv').config() 
             const OpenAI = require('openai');
-            const openai = new OpenAI(x);
+            const openai = new OpenAI(process.env.OPENAI_API_KEY);
             const axios = require('axios');
             axios.post('https://api.openai.com/v1/engines/davinci-codex/completions',
             {
@@ -23,7 +22,7 @@
             {
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${x}`
+                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
             }
             })
                 .then(response => {
