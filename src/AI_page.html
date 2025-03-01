@@ -8,11 +8,13 @@
     <p id="demo"></p>
     <textarea id="myTextarea"></textarea>
     <button type="button" onclick="runAI()">LETS GO</button>
+    
     <script>
+        var apikey;
         function runAI() {
-            var apikey = document.getElementById("myTextarea").value;
-            require('dotenv').config() 
-            const OpenAI = require('openai');
+            apikey = document.getElementById("myTextarea").value;
+            document.getElementById("demo").innerHTML = apikey;
+
             const openai = new OpenAI(apikey);
             openai.Completion.create ({
                 engine: 'text-davinci-003',
