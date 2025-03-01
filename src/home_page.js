@@ -5,7 +5,6 @@ const totalImages = images.length;
 const totalText = text.length; 
 
 function changeSlide(direction) {
-    console.log("Button clicked, changing slide:", direction); // Debugging
 
     if (images[currentIndex]) images[currentIndex].style.display = 'none';
     if (text[currentIndex]) text[currentIndex].style.display = 'none';
