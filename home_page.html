@@ -3,10 +3,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel = "stylesheet" href = "home_page.css">
 </head>
+<div class="header">
+    <div class = "title">
+    <a href="#default" class="logo">HalenessHelper</a>
+</div>
+    <div class="header-right">
+      <a class="active" href="#home">Home</a>
+      <a href="#contact">NurseBot</a>
+      <a href="#about">About</a>
+    </div>
+  </div> 
 <body>
-    <p>
-        Hello World!
+<div class = "imageCycle">
+    <div class = "imagesToCycle">
+        <div class = "container">
+    <img src = "images\logo.png">
+    <img src = "images\Robot+Nurse_web-3248936417.jpg">
+    <img src = "images\RadiusMap-1282758663.png">
+    <p>Our Mission: Healthcare can be a very unapproachable field and many people don't know where to begin
+        when seeking it. It would be terrible for someone to not seek out healthcare because of how daunting it may be
+        so we sought out to design a website to make this process as easy as possible. With the local physician finder and 
+        automated assistant we seek to give our users the knowledge and comfort that their needs will be met so they can take action
+        on their health.
     </p>
+    <p>Automated Assistant: With our automated assistant you can simply tell them any question you need about 
+        your healthcare needs. You can tell it symptoms and it can give you potential remedies or what the underlying problem is.
+        Remember for anything beyond basic remedies, consult your doctor! Our next tool can help with that!
+    </p>
+    <p>Physician Finder: Our physician finder can locate local doctors in your area as well as specialists that can
+        cater to your specific needs. This will show you their location as well as contact info, care is just a few clicks away!
+    </p>
+        </div>
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </div>
+    <script src="home_page.js"></script>
 </body>
 </html>
