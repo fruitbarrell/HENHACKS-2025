@@ -13,27 +13,16 @@
             require('dotenv').config() 
             const OpenAI = require('openai');
             const openai = new OpenAI(process.env.OPENAI_API_KEY);
-            const axios = require('axios');
-            axios.post('https://api.openai.com/v1/engines/davinci-codex/completions',
-            {
-                prompt: 'Tell me about cheeseburgers',
+            openai.Completion.create ({
+                engine: 'text-davinci-003',
+                prompt: "Tell me about cheeseburgers",
                 max_tokens: 60
-            },
-            {
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-            }
+            }).then(response => {
+                var ai_response = response.choices[0].text.trim();
+                document.getElementById("demo").innerHTML = ai_response;
+            }).catch(error => {
+                var ai_response = 'ERROR';
             })
-                .then(response => {
-                console.log(response.data.choices[0].text.strip());
-            })
-                .catch(error => {
-                console.error(error);
-            });
-
-            let ai_response = response.data.choices[0].text.strip();
-            document.getElementById("demo").innerHTML = ai_response;
         }
         
          
