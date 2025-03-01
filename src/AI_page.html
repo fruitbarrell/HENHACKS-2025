@@ -5,41 +5,52 @@
     <title>AI Page</title>
 </head>
 <style>
-    .odd { color: red; font-weight: bold; }
-    .even { color: blue; font-style: italic; }
+    .odd { color: red; font-weight: bold;}
+    .even { color: blue; font-style: italic;}
   </style>
   <header style="background-color: pink;">
     <h1 style="text-align: center;">Robot Nurse</h1>
 </header>
 <body>
-    <div id="fruit-list"></div>
+      <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
+      <input type="text" id="myTextbox" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
+      <button id="setValueBtn">Set Value</button>
+        <script>
+            // List of items
+            const items = [""];
 
-    <script>
-      // List of items
-      const items = localStorage.getItems('messages');
-  
-      // Get the container where we want to display the list
-      const container = document.getElementById("fruit-list");
-  
-      // Loop through the items array and create a div for each item
-      items.forEach((item, index) => {
-        const itemDiv = document.createElement("div");
-  
-        // Apply a different class based on whether the index is even or odd
-        if (index % 2 === 0) {
-          itemDiv.classList.add("even"); // Apply 'even' class
-        } else {
-          itemDiv.classList.add("odd"); // Apply 'odd' class
-        }
-  
-        // Set the text of the div to the item
-        itemDiv.textContent = item;
-  
-        // Append the new div to the container
-        container.appendChild(itemDiv);
-      });
-    </script>
-      <input type="text" id="name" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 15%;">
+            // Get the container where we want to display the list
+            const container = document.getElementById("messages");
+
+            
+            // Event listener for the button click
+            document.getElementById('setValueBtn').addEventListener('click', function() {
+            // Get the value of the textbox
+            const textboxValue = document.getElementById('myTextbox').value;
+            items.push(textboxValue);
+            container.innerHTML = "";
+            document.getElementById('myTextbox').value = "";
+            // Loop through the items array and create a div for each item
+            items.forEach((item, index) => {
+            const itemDiv = document.createElement("div");
+
+            // Apply a different class based on whether the index is even or odd
+            if (index % 2 === 0) {
+                itemDiv.classList.add("even"); // Apply 'even' class
+            } else {
+                itemDiv.classList.add("odd"); // Apply 'odd' class
+            }
+
+            // Set the text of the div to the item
+            itemDiv.textContent = item;
+
+            // Append the new div to the container
+            container.appendChild(itemDiv);
+            });
+            
+            });
+        </script>
+
     <p id="demo"></p>
     <textarea id="myTextarea"></textarea>
     <button type="button" onclick="runAI()">LETS GO</button>
