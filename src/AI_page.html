@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .odd { color: red; font-weight: bold; }
+    .even { color: blue; font-style: italic; }
+  </style>
+
+<header style="background-color: pink;">
+    <h1 style="text-align: center;">Robot Nurse</h1>
+</header>
+<body>
+    <div id="fruit-list"></div>
+
+  <script>
+    // List of items
+    const items = localStorage.getItems('messages');
+
+    // Get the container where we want to display the list
+    const container = document.getElementById("fruit-list");
+
+    // Loop through the items array and create a div for each item
+    items.forEach((item, index) => {
+      const itemDiv = document.createElement("div");
+
+      // Apply a different class based on whether the index is even or odd
+      if (index % 2 === 0) {
+        itemDiv.classList.add("even"); // Apply 'even' class
+      } else {
+        itemDiv.classList.add("odd"); // Apply 'odd' class
+      }
+
+      // Set the text of the div to the item
+      itemDiv.textContent = item;
+
+      // Append the new div to the container
+      container.appendChild(itemDiv);
+    });
+  </script>
+    <input type="text" id="name" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 15%;">
+</body>
+</html>
