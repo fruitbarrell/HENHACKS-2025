@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Page</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <textarea id="myTextarea"></textarea>
+    <button type="button" onclick="runAI()">LETS GO</button>
+    <script>
+        function runAI() {
+            var x = document.getElementById("myTextarea").value;
+            require('dotenv').config() 
+            const OpenAI = require('openai');
+            const openai = new OpenAI(x);
+            const axios = require('axios');
+            axios.post('https://api.openai.com/v1/engines/davinci-codex/completions',
+            {
+                prompt: 'Tell me about cheeseburgers',
+                max_tokens: 60
+            },
+            {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${x}`
+            }
+            })
+                .then(response => {
+                console.log(response.data.choices[0].text.strip());
+            })
+                .catch(error => {
+                console.error(error);
+            });
+
+            let ai_response = response.data.choices[0].text.strip();
+            document.getElementById("demo").innerHTML = ai_response;
+        }
+        
+         
+    </script>
+</body>
+</html>
