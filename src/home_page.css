@@ -1,9 +1,12 @@
+body {
+    background-color: #F9DCE8;
+    font-family: 'Trebuchet', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #CCCCFF;
     padding: 20px 10px;
   }
-  
   .header a {
     float: left;
     color: black;
@@ -85,3 +88,25 @@
     align-items: center;
     justify-content: center
   }
+
+  p {
+    margin-left: 10%;
+  }
+
+  .pageBottom {
+  font-size: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin:0;
+  }
+
+  .credits {
+    font-size: 10px;
+    left: 0;
+    bottom: 5111px;
+    width: 100%;
+    text-align: right;
+    margin:0;
+    }
