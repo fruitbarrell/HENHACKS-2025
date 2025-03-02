@@ -1,12 +1,18 @@
+body {
+    color:rgb(33, 32, 32);
+    background-color: #EAEDED;
+    letter-spacing: 3px;
+    font-family: 'Trebuchet', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 .header {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #0077B6;
     padding: 20px 10px;
   }
-  
   .header a {
     float: left;
-    color: black;
+    color: #F8F9FA;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -56,28 +62,24 @@
 
   .imagesToCycle img {
     max-width: 60%;
-    display: block;
   }
 
   button {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
+    top: 70%;
+    padding: 25px;
+    left: 21.5%;
+    background-color: white;
+    border: black;
     cursor: pointer;
-    padding: 10px;
-    z-index: 10;
+    
   }
 
   .prev {
-    bottom: 220px;
-    left: 10px;
+   
   }
 
   .next {
-    bottom: 227px;
-    left: 52%;
   }
 
   .container {
@@ -85,3 +87,25 @@
     align-items: center;
     justify-content: center
   }
+
+  p {
+    margin-left: 5%;
+  }
+
+  .pageBottom {
+  font-size: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin:0;
+  }
+
+  .credits {
+    font-size: 10px;
+    left: 0;
+    bottom: 5111px;
+    width: 100%;
+    text-align: right;
+    margin:0;
+    }
