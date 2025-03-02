@@ -5,17 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple OpenAI Chat</title>
 </head>
+<link rel ="stylesheet" href="home_page.css">
+<div class="header">
+    <div class = "title">
+    <a href="#default" class="logo">HalenessHelper</a>
+</div>
+    <div class="header-right">
+      <a class="active" href="../index.html">Home</a>
+      <a href="./AI_page.html">NurseBot</a>
+      <a href="../local_page.html">Physician Finder</a>
+      <a href="../contact.html">Contact Us</a>
+    </div>
+  </div> 
 <style>
     .odd { color: red; font-weight: bold;}
     .even { color: blue; font-style: italic;}
   </style>
-  
   <header style="background-color: pink;">
     <h1 style="text-align: center;">Robot Nurse</h1>
 </header>
+<body>
 
-<body>    
-    <H3 style="color: red; font-weight: bold;text-align: center;">Hey my name is Nurse Bot Dylan, what can I help you with?</H3>
+    <h2>Ask OpenAI:</h2>
+    <textarea id="userInput" rows="4" cols="50" placeholder="Type your question..."></textarea>
+    <br>
+   
+    
+
     <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
       <input type="text" id="userInput" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
       <button onclick="handleSubmit()" id="setValueBtn">Ask</button>
