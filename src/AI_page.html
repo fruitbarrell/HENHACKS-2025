@@ -13,65 +13,69 @@
     <h1 style="text-align: center;">Robot Nurse</h1>
 </header>
 <body>
+    
 
-    <h2>Ask OpenAI:</h2>
-    <textarea id="apikeyarea"></textarea>
-    <textarea id="userInput" rows="4" cols="50" placeholder="Type your question..."></textarea>
     <br>
-    <button onclick="handleRequest()">Ask</button>
-    <p><strong>Response:</strong></p>
-    <p id="responseText">Waiting for input...</p>
+   
+    
 
     <div id="messages" style="display: flex; flex-direction: column; align-items: center; justify-content: center;"></div>
-      <input type="text" id="myTextbox" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
-      <button id="setValueBtn">Set Value</button>
+      <input type="text" id="userInput" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
+      <button onclick="handleSubmit()" id="setValueBtn">Ask</button>
         <script>
+            let loading= false;
             // List of items
             const items = [""];
+
 
             // Get the container where we want to display the list
             const container = document.getElementById("messages");
 
             
             // Event listener for the button click
-            document.getElementById('setValueBtn').addEventListener('click', function() {
-            // Get the value of the textbox
-            const textboxValue = document.getElementById('myTextbox').value;
-            items.push(textboxValue);
-            container.innerHTML = "";
-            document.getElementById('myTextbox').value = "";
-            // Loop through the items array and create a div for each item
-            items.forEach((item, index) => {
-            const itemDiv = document.createElement("div");
+            function regenete_mgs(){
+                container.innerHTML = "";
+                // Loop through the items array and create a div for each item
+                items.forEach((item, index) => {
+                    const itemDiv = document.createElement("div");
 
-            // Apply a different class based on whether the index is even or odd
-            if (index % 2 === 0) {
-                itemDiv.classList.add("even"); // Apply 'even' class
-            } else {
-                itemDiv.classList.add("odd"); // Apply 'odd' class
-            }
+                    // Apply a different class based on whether the index is even or odd
+                    if (index % 2 === 0) {
+                        itemDiv.classList.add("even"); // Apply 'even' class
+                    } else {
+                        itemDiv.classList.add("odd"); // Apply 'odd' class
+                    }
 
-            // Set the text of the div to the item
-            itemDiv.textContent = item;
+                    // Set the text of the div to the item
+                    itemDiv.textContent = item;
 
-            // Append the new div to the container
-            container.appendChild(itemDiv);
-            });
+                    // Append the new div to the container
+                    container.appendChild(itemDiv);
+                });
+                }
             
-            });
-        </script>
-
-    <p id="demo"></p>
-    <textarea id="myTextarea"></textarea>
-    <button type="button" onclick="runAI()">LETS GO</button>
-
-    <script>
+            
+            
+        async function handleSubmit(){
+            const button = document.getElementById("setValueBtn");
+            button.disabled = true;
+            // Get the value of the textbox
+            const textboxValue = document.getElementById('userInput').value;
+            items.push(textboxValue);
+            regenete_mgs();
+            response=await handleRequest();
+            items.push(response);
+            regenete_mgs();
+            document.getElementById('userInput').value = "";
+            button.disabled = false;
+             
+        }
         async function handleRequest() {
             const userInput = document.getElementById("userInput").value;
             document.getElementById("responseText").innerText = "Thinking...";
 
             const response = await getOpenAIResponse(userInput);
-            document.getElementById("responseText").innerText = response;
+            return response;
         }
 
         async function getOpenAIResponse(prompt) {
@@ -95,6 +99,11 @@
             return data.choices[0]?.message?.content || "No response from OpenAI.";
         }
     </script>
+    <p><strong>Response:</strong></p>
+    <p id="responseText">Waiting for input...</p>
 
 </body>
+<footer>
+    <textarea id="apikeyarea"></textarea>
+</footer>
 </html>
