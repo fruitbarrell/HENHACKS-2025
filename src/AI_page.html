@@ -21,7 +21,9 @@
     .odd { color: red; font-weight: bold;}
     .even { color: blue; font-style: italic;}
   </style>
+  <header style="background-color: pink;">
     <h1 style="text-align: center;">Robot Nurse</h1>
+</header>
 <body>
 
     <h2>Ask OpenAI:</h2>
@@ -34,10 +36,10 @@
       <input type="text" id="userInput" name="name" placeholder="Enter your name" style="border:2px solid #000; border-radius: 15px; padding: 20px; margin-left: 42%;margin-top: 5%;">
       <button onclick="handleSubmit()" id="setValueBtn">Ask</button>
         <script>
-            let loading= false;
+            
             // List of items
-            const items = [""];
-
+            const items = [];
+            
 
             // Get the container where we want to display the list
             const container = document.getElementById("messages");
@@ -83,7 +85,7 @@
         }
         async function handleRequest() {
             const userInput = document.getElementById("userInput").value;
-            document.getElementById("responseText").innerText = "Thinking...";
+            
 
             const response = await getOpenAIResponse(userInput);
             return response;
@@ -101,7 +103,8 @@
                 },
                 body: JSON.stringify({
                     model: "gpt-3.5-turbo",
-                    messages: [{ role: "user", content: prompt }],
+                    messages: [{ role: "system", content: "You are a helpful and knowledgeable nurse. Provide health advice, answer medical-related questions, and offer compassionate support. Do not provide medical diagnoses or treatment prescriptions." },
+                    { role: "user", content: prompt }],
                     max_tokens: 100
                 })
             });
@@ -110,11 +113,9 @@
             return data.choices[0]?.message?.content || "No response from OpenAI.";
         }
     </script>
-    <p><strong>Response:</strong></p>
-    <p id="responseText">Waiting for input...</p>
 
 </body>
 <footer>
-    <textarea id="apikeyarea"></textarea>
+    <textarea id="apikeyarea" placeholder="API KEY HERE"></textarea>
 </footer>
 </html>
