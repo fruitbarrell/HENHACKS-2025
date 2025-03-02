@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <header>
+        <h2>Local Accessible Assistance</h2>
+    </header>
+</head>
+<body>
+    <form id="big-form">
+        <form>
+            <label for="area-code-question">What is your area code?</label>
+            <input type="text" id="area-code-question"><br>
+        </form>
+        <form>
+            <label for="specialized-question">Do you need a specialist, and if yes what kind?</label>
+            <select id="specialized-question" name="specialized-question">
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Endocrinologist">Endocrinologist</option>
+                <option value="Gastroenterologist">Gastroenterologist</option>
+                <option value="Geriatricians">Geriatricians</option>
+                <option value="Hematologist">Hematologist</option>
+                <option value="Hepatologist">Hepatologist</option>
+                <option value="Infectious Disease Specialist">Infectious Disease Specialist</option>
+                <option value="Internist">Internist</option>
+                <option value="Nephrologist">Nephrologist</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Obstetricians/Gynecologists">Obstetrician/Gynecologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Ophthalmologist">Ophthalmologist</option>
+                <option value="Orthopedist">Orthopedist</option>
+                <option value="Otolaryngologist (ENT)">Otolaryngologist (ENT)</option>
+                <option value="Pathologist">Pathologist</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Physiatrist">Physiatrist</option>
+                <option value="Podiatrist">Podiatrist</option>
+                <option value="Psychiatrist">Psychiatrist</option>
+                <option value="Pulmonologist">Pulmonologist</option>
+                <option value="Radiologist">Radiologist</option>
+                <option value="Rheumatologist">Rheumatologist</option>
+                <option value="Urologist">Urologist</option>
+                <option value="No" selected>No, I do not need to see a specialist</option>
+            </select>
+        </form>
+        <form>
+            <label for="handicap-question">Do you need handicap accessibility?</label>
+            <select id="handicap-question" name="handicap-question">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+            </select>
+        </form>
+        <button onclick="handleRequest()">Submit</button>
+    </form>
+    <p id="responseText"></p>
+    <p>API Key: </p>
+    <textarea id="apikeyarea"></textarea>
+    <script>
+        async function handleRequest() {
+            const userInput = "Find a local medical provider using the 1.Area Code, 2.Specialist they are looking foor, 3.If they accomadate handicap patients: "+document.getElementById("area-code-question").value +", "+document.getElementById("specialized-question").value+", "+document.getElementById("handicap-question").value;
+            document.getElementById("responseText").innerText = "Thinking...";
+
+            const response = await getOpenAIResponse(userInput);
+            document.getElementById("responseText").innerText = response;
+        }
+
+        async function getOpenAIResponse(prompt) {
+            const apiKey = document.getElementById("apikeyarea").value; // Replace with your actual API key
+            const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "user", content: prompt }],
+                    max_tokens: 100
+                })
+            });
+
+            const data = await response.json();
+            return data.choices[0]?.message?.content || "No response from OpenAI.";
+        }
+    </script>
+</body>
+</html>
