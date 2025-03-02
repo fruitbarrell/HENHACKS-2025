@@ -9,7 +9,6 @@
 </head>
 <body>
     <form id="big-form">
-        
         <form>
             <label for="area-code-question">What is your area code?</label>
             <input type="text" id="area-code-question"><br>
@@ -52,7 +51,40 @@
                 <option value="no" selected>No</option>
             </select>
         </form>
-        <button onclick=""></button>
+        <button onclick="handleRequest()">Submit</button>
     </form>
+    <p id="responseText"></p>
+    <p>API Key: </p>
+    <textarea id="apikeyarea"></textarea>
+    <script>
+        async function handleRequest() {
+            const userInput = "Find a local medical provider using the 1.Area Code, 2.Specialist they are looking foor, 3.If they accomadate handicap patients: "+document.getElementById("area-code-question").value +", "+document.getElementById("specialized-question").value+", "+document.getElementById("handicap-question").value;
+            document.getElementById("responseText").innerText = "Thinking...";
+
+            const response = await getOpenAIResponse(userInput);
+            document.getElementById("responseText").innerText = response;
+        }
+
+        async function getOpenAIResponse(prompt) {
+            const apiKey = document.getElementById("apikeyarea").value; // Replace with your actual API key
+            const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "user", content: prompt }],
+                    max_tokens: 100
+                })
+            });
+
+            const data = await response.json();
+            return data.choices[0]?.message?.content || "No response from OpenAI.";
+        }
+    </script>
 </body>
 </html>
