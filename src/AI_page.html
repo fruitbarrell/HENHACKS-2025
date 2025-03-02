@@ -15,7 +15,6 @@
 <body>
 
     <h2>Ask OpenAI:</h2>
-    <textarea id="apikeyarea"></textarea>
     <textarea id="userInput" rows="4" cols="50" placeholder="Type your question..."></textarea>
     <br>
     <button onclick="handleRequest()">Ask</button>
@@ -60,10 +59,8 @@
             
             });
         </script>
-
-    <p id="demo"></p>
-    <textarea id="myTextarea"></textarea>
-    <button type="button" onclick="runAI()">LETS GO</button>
+        <p>API Key: </p>
+        <textarea id="apikeyarea"></textarea>
 
     <script>
         async function handleRequest() {
